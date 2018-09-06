@@ -4,8 +4,10 @@ Vagrant.configure(2) do |config|
   config.vm.network "forwarded_port", guest: 8081, host: 8081
   
   config.vm.provider "virtualbox" do |v|
-    v.memory = 4096
+    v.memory = 8192
   end
+
+  config.vm.provision "shell", inline: "export START_TMO=240"
 
   config.vm.provision "shell", inline: "yum install java-1.8.0-openjdk-devel -y" 
   config.vm.provision "shell", inline: "yum install -y postgresql-server"
